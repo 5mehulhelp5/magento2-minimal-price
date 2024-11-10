@@ -11,7 +11,7 @@ This extension allows to set a minimal price to a product.
    - [Composer installation](#composer-installation)
    - [Setup the module](#setup-the-module)
  - [Features](#features)
- - [Settings](#settings)
+ - [Did You Know](#did-you-know)
  - [Support](#support)
  - [Authors](#authors)
  - [License](#license)
@@ -40,18 +40,24 @@ bin/magento setup:upgrade
 
 ## Features
 
-### Minimal Price
-
 Define the minimal price availability for a product. The price is capped to the minimal value if any special price, 
 tier price or catalog rule tries to price down the limit.
-
-## Settings
-
-- Set the minimal price on products.
 
 ### Product Attributes
 
 - minimal_price, available in the "Prices" group.
+
+## Did You Know
+
+While working on this project, it appears that Magento already has an attribute with code "minimal_price".  
+This attribute exists in Magento since forever. It's actually a system attribute which is not visible through the admin panel.  
+There is also a few method that refers to this attribute, such as:  
+
+- \Magento\Catalog\Model\Product::getMinimalPrice (Called in \Magento\Catalog\Pricing\Price\FinalPrice::getMinimalPrice)
+- \Magento\Catalog\Model\ResourceModel\Product\Collection::joinMinimalPrice (Never called)
+
+This attribute and methods are not used in the Commerce edition neither.  
+This module updates and reuse this existing attribute in order to give it a true usage.
 
 ## Support
 
