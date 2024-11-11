@@ -8,8 +8,11 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Opengento_MinimalPrice">
         <sequence>
+            <module name="Magento_Eav"/>
             <module name="Magento_Catalog"/>
             <module name="Magento_CatalogRule"/>
+            <module name="Magento_Downloadable"/>
+            <module name="Magento_Bundle"/>
         </sequence>
     </module>
 </config>

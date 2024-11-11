@@ -5,7 +5,7 @@
 [![Packagist](https://img.shields.io/packagist/dt/opengento/module-minimal-price.svg?style=flat-square)](https://packagist.org/packages/opengento/module-minimal-price/stats)
 [![Packagist](https://img.shields.io/packagist/dm/opengento/module-minimal-price.svg?style=flat-square)](https://packagist.org/packages/opengento/module-minimal-price/stats)
 
-This extension allows to set a minimal price to a product.
+This extension allows to set a minimal price to a product (MAP).
 
  - [Setup](#setup)
    - [Composer installation](#composer-installation)
@@ -45,9 +45,13 @@ tier price or catalog rule tries to price down the limit.
 
 ### Product Attributes
 
-- minimal_price, available in the "Prices" group.
+- `minimal_price`, available in the "Advanced Pricing" group.
+
+If you use the native import export tool provided with Magento, the attribute `minimal_price` is mapped with the field `map_price`. 
 
 ## Did You Know
+
+### An hiding an never completed feature
 
 While working on this project, it appears that Magento already has an attribute with code "minimal_price".  
 This attribute exists in Magento since forever. It's actually a system attribute which is not visible through the admin panel.  
@@ -57,7 +61,21 @@ There is also a few method that refers to this attribute, such as:
 - \Magento\Catalog\Model\ResourceModel\Product\Collection::joinMinimalPrice (Never called)
 
 This attribute and methods are not used in the Commerce edition neither.  
+There is also some trace there: `\Magento\CatalogImportExport\Model\Export\Product`:  
+```
+...
+'minimal_price' => 'map_price',
+'msrp' => 'msrp_price',
+'msrp_enabled' => 'map_enabled',
+...
+```
+This suggests that `minimal_price` is mapped as "Minimum Advertised Price" (MAP). MAP policies are legal documents brands 
+use to define the lowest legally possible advertised price for a product. It does set the minimum, some penalties may be 
+applied if a seller violates the MAP.  
+
 This module updates and reuse this existing attribute in order to give it a true usage.  
+
+### Price Indexer, to be or not to be?
 
 Also, while investigating a bug where the minimal price value was not handled in the PDP nor PLP.
 It seems that the catalog_product_index_price is not used to render and display the final prices.  

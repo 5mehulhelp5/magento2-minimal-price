@@ -5,24 +5,22 @@
         "php",
         "magento",
         "magento2",
-        "minimalPrice",
+        "price",
         "pricing",
-        "customer",
-        "groups"
+        "MAP",
+        "minimum advertised price",
+        "minimal advertised price"
     ],
     "require": {
         "php": "^8.1",
         "magento/framework": "*",
+        "magento/module-eav": "*",
         "magento/module-catalog": "*",
-        "magento/module-checkout": "*",
-        "magento/module-config": "*",
-        "magento/module-customer": "*",
-        "magento/module-store": "*"
+        "magento/module-catalog-rule": "*"
     },
     "require-dev": {
-        "magento/magento-coding-standard": "^5",
-        "magento/marketplace-eqp": "^4.0",
-        "roave/security-advisories": "dev-master"
+        "magento/magento-coding-standard": "^33",
+        "roave/security-advisories": "dev-latest"
     },
     "type": "magento2-module",
     "license": [
