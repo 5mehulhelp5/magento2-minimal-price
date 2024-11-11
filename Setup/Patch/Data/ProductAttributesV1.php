@@ -66,7 +66,7 @@ class ProductAttributesV1 implements DataPatchInterface
             'used_in_product_listing' => 1,
             'used_for_sort_by' => 0,
             'apply_to' => $applyTo,
-            'group' => 'Advanced Pricing', // Originally it was names Prices
+            'group' => 'Advanced Pricing', // Until Magento 2.0.0.0-dev40, it was named "Prices".
             'required' => 0,
             'is_used_in_grid' => 1,
             'is_visible_in_grid' => 0,
