@@ -15,6 +15,6 @@ class ApplyMinimalPrice
 {
     public function afterGetValue(FinalPrice $subject, float $result): float
     {
-        return max($subject->getMinimalPrice()->getValue(), $result);
+        return (float)max($subject->getProduct()->getMinimalPrice(), $result);
     }
 }
