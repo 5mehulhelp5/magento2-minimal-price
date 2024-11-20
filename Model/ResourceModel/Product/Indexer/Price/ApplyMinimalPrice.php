@@ -35,6 +35,14 @@ class ApplyMinimalPrice implements PriceModifierInterface
             ['e' => $connection->getTableName('catalog_product_entity')],
             'e.entity_id = i.entity_id',
             ['']
+        )->joinLeft(
+            ['pw' => $connection->getTableName('catalog_product_website')],
+            'pw.product_id = e.entity_id',
+            []
+        )->joinLeft(
+            ['cwd' => $connection->getTableName('catalog_product_index_website')],
+            'pw.website_id = cwd.website_id',
+            []
         );
         if ($entityIds) {
             $select->where('i.entity_id IN (?)', $entityIds, Zend_Db::INT_TYPE);
