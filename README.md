@@ -75,18 +75,6 @@ applied if a seller violates the MAP.
 
 This module updates and reuse this existing attribute in order to give it a true usage.  
 
-### Price Indexer, to be or not to be?
-
-Also, while investigating a bug where the minimal price value was not handled in the PDP nor PLP.
-It seems that the catalog_product_index_price is not used to render and display the final prices.  
-When inspecting the query logs, it seems that even if the indexer is loaded and applied to the product list, 
-when the template render the prices, the following method is used `\Magento\Catalog\Block\Product\ListProduct::getProductPrice`.
-This method calls `Magento\Framework\Pricing\Render::render` which render a price by code. The engine will proceed with 
-`Magento\Catalog\Pricing\Price\FinalPrice` and `Magento\Catalog\Pricing\Price\BasePrice`. The rendering is finally delegated 
-to `Magento\CatalogRule\Pricing\Price\CatalogRulePrice` which loads any active catalog rules.  
-  
-The performance struggles comes when you have a lot of active catalog rule loaded every team for each items on the page.
-
 ## Support
 
 Raise a new [request](https://github.com/opengento/magento2-minimal-price/issues) to the issue tracker.
